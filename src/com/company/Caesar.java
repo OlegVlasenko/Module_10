@@ -14,7 +14,7 @@ public class Caesar {
         }
     }
 
-     private static String encodeValue(String input) {
+    private static String encodeValue(String input) {
 
         StringBuilder res = new StringBuilder();
 
@@ -28,7 +28,7 @@ public class Caesar {
         return res.toString();
     }
 
-    public static void  decodeArray(ArrayList<String> paramArray) {
+    public static void decodeArray(ArrayList<String> paramArray) {
         for (String Item : paramArray) {
             Item = decodeValue(Item);
         }
