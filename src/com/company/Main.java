@@ -1,25 +1,57 @@
 package com.company;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
-public class Main {
+class Main {
 
-    public static void main(String[] args) throws IOException {
-        FileInputStream in = null;
-        FileOutputStream out = null;
+    public static void main(String[] args)  {
+        BufferedReader in = null;
+        BufferedWriter out = null;
+        Path pathIn = FileSystems.getDefault().getPath("input.txt");
         try {
-            in = new FileInputStream("input.txt");
-            out = new FileOutputStream("output.txt");
-            int c;
+            in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
+            out = new BufferedWriter(new FileWriter("output.txt"));
+            String s;
 
-            while ((c = in.read()) != -1) {
-                out.write(c);
+            while ((s = in.readLine()) != null) {
+                out.write(Caesar.encodeValue(s));
+                out.newLine();
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
         } finally {
-            if (in != null) in.close();
-            if (out != null) out.close();
+            try {
+                if (in != null) in.close();
+                if (out != null) out.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
+
+        pathIn = FileSystems.getDefault().getPath("output.txt");
+        try {
+            in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
+            out = new BufferedWriter(new FileWriter("output2.txt"));
+            String s;
+
+            while ((s = in.readLine()) != null) {
+                out.write(Caesar.decodeValue(s));
+                out.newLine();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) in.close();
+                if (out != null) out.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
 }

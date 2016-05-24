@@ -3,10 +3,11 @@ package com.company;
 import java.util.ArrayList;
 import java.util.PrimitiveIterator;
 
-public class Caesar {
+@SuppressWarnings("unused")
+class Caesar {
 
     private static final int CODE_OFFSET = 11;
-    private static final int V_SIZE = 73;
+    private static final int V_SIZE = 255;
 
     public static void encodeArray(ArrayList<String> paramArray) {
         for (String Item : paramArray) {
@@ -14,15 +15,17 @@ public class Caesar {
         }
     }
 
-    private static String encodeValue(String input) {
+    public static String encodeValue(String input) {
 
         StringBuilder res = new StringBuilder();
 
-        PrimitiveIterator.OfInt cpIterator = input.codePoints().iterator();
+        if (input != null) {
+            PrimitiveIterator.OfInt cpIterator = input.codePoints().iterator();
 
-        while (cpIterator.hasNext()) {
-            int cp = cpIterator.next();
-            res.appendCodePoint('1' + Math.floorMod(cp - '1' + CODE_OFFSET, V_SIZE));
+            while (cpIterator.hasNext()) {
+                int cp = cpIterator.next();
+                res.appendCodePoint(' ' + Math.floorMod(cp - ' ' + CODE_OFFSET, V_SIZE));
+            }
         }
 
         return res.toString();
@@ -34,7 +37,7 @@ public class Caesar {
         }
     }
 
-    private static String decodeValue(String input) {
+    public static String decodeValue(String input) {
 
         StringBuilder res = new StringBuilder();
 
@@ -42,7 +45,7 @@ public class Caesar {
 
         while (cpIterator.hasNext()) {
             int cp = cpIterator.next();
-            res.appendCodePoint('1' + Math.floorMod(cp - '1' - CODE_OFFSET, V_SIZE));
+            res.appendCodePoint(' ' + Math.floorMod(cp - ' ' - CODE_OFFSET, V_SIZE));
         }
 
         return res.toString();
