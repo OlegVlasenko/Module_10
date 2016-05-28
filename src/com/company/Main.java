@@ -9,8 +9,8 @@ import java.nio.file.Path;
 class Main {
 
     public static void main(String[] args)  {
-        BufferedReader in = null;
-        BufferedWriter out = null;
+        BufferedReader in;
+        BufferedWriter out;
         Path pathIn = FileSystems.getDefault().getPath("input.txt");
         try {
             in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
