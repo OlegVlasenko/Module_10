@@ -23,13 +23,6 @@ class Main {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (in != null) in.close();
-                if (out != null) out.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
 
         pathIn = FileSystems.getDefault().getPath("output.txt");
@@ -44,13 +37,6 @@ class Main {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (in != null) in.close();
-                if (out != null) out.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
 
     }
