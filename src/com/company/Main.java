@@ -8,13 +8,12 @@ import java.nio.file.Path;
 
 class Main {
 
-    public static void main(String[] args)  {
-        BufferedReader in;
-        BufferedWriter out;
+    public static void main(String[] args) {
+        //BufferedReader in;
+        //BufferedWriter out;
         Path pathIn = FileSystems.getDefault().getPath("input.txt");
-        try {
-            in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
-            out = new BufferedWriter(new FileWriter("output.txt"));
+        try (BufferedReader in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
+             BufferedWriter out = new BufferedWriter(new FileWriter("output.txt"))) {
             String s;
 
             while ((s = in.readLine()) != null) {
@@ -26,9 +25,9 @@ class Main {
         }
 
         pathIn = FileSystems.getDefault().getPath("output.txt");
-        try {
-            in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
-            out = new BufferedWriter(new FileWriter("output2.txt"));
+        try (BufferedReader in = Files.newBufferedReader(pathIn, Charset.defaultCharset());
+             BufferedWriter out = new BufferedWriter(new FileWriter("output2.txt"))) {
+
             String s;
 
             while ((s = in.readLine()) != null) {
